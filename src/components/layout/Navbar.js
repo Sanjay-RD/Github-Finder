@@ -18,7 +18,8 @@ class Navbar extends Component {
     return (
       <nav className="navbar bg-primary">
         <h1>
-          <i class={this.props.icon} aria-hidden="true"></i> {this.props.title}
+          <i className={this.props.icon} aria-hidden="true"></i>{" "}
+          {this.props.title}
         </h1>
       </nav>
     );
