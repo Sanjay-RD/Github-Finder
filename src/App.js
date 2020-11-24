@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
-import UserItems from "./components/user/UserItems";
+import Users from "./components/user/Users";
 
 class App extends Component {
   render() {
@@ -9,7 +9,9 @@ class App extends Component {
       <div className="App">
         {/* passing props in navbar */}
         <Navbar title="Navbar" icon="fa fa-github" />
-        <UserItems />
+        <div className="container">
+          <Users />
+        </div>
       </div>
     );
   }
