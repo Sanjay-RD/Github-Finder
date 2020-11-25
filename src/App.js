@@ -11,14 +11,10 @@ class App extends Component {
   };
   async componentDidMount() {
     this.setState({ loading: true });
-    // without using async await
-    // axios
-    //   .get("https://api.github.com/users")
-    //   .then((res) => this.setState({ users: res.data, loading: false }));
 
     // using async await
     const res = await axios.get("https://api.github.com/users");
-    this.setState({ users: res.data });
+    this.setState({ users: res.data, loading: false });
   }
   render() {
     return (
