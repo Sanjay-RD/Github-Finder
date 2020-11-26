@@ -91,6 +91,10 @@ input[type="text"] {
   background: var(--dark-color);
   color: #fff;
 }
+.btn-light {
+  background: var(--light-color);
+  color: #333;
+}
 .btn-block {
   display: block;
   width: 100%;
