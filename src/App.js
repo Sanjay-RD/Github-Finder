@@ -3,6 +3,7 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Users from "./components/user/Users";
 import axios from "axios";
+import Search from "./components/user/Search";
 
 class App extends Component {
   state = {
@@ -10,7 +11,7 @@ class App extends Component {
     loading: false,
   };
   async componentDidMount() {
-    console.log(process.env.REACT_APP_GITHUB_CLIENT_CLIENT);
+    // console.log(process.env.REACT_APP_GITHUB_CLIENT_CLIENT);
     this.setState({ loading: true });
 
     // using async await
@@ -25,6 +26,7 @@ class App extends Component {
         {/* passing props in navbar */}
         <Navbar title="Navbar" icon="fa fa-github" />
         <div className="container">
+          <Search />
           <Users loading={this.state.loading} users={this.state.users} />
         </div>
       </div>

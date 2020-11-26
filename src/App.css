@@ -40,6 +40,19 @@ a {
 
 /* ++++ */
 
+/* FORM */
+input {
+  margin: 1.2rem 0;
+}
+
+input[type="text"] {
+  display: block;
+  width: 100%;
+  padding: 0.4rem;
+  font-size: 1.2rem;
+  border: 1px solid #ccc;
+}
+
 /* cards */
 .card {
   padding: 1rem;
@@ -77,6 +90,10 @@ a {
 .btn-dark {
   background: var(--dark-color);
   color: #fff;
+}
+.btn-block {
+  display: block;
+  width: 100%;
 }
 .btn-sm {
   font-size: 0.8rem;
