@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 
 const Navbar = ({ icon, title }) => {
@@ -7,6 +8,16 @@ const Navbar = ({ icon, title }) => {
       <h1>
         <i className={icon} aria-hidden="true"></i> {title}
       </h1>
+      <ul>
+        <li>
+          <i class="fa fa-home" aria-hidden="true"></i>
+          <Link to="/">Home</Link>
+        </li>
+        <li>
+          <i class="fa fa-address-book-o" aria-hidden="true"></i>
+          <Link to="/about">About</Link>
+        </li>
+      </ul>
     </nav>
   );
 };

@@ -3,8 +3,10 @@ import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Alert from "./components/layout/Alert";
 import Users from "./components/user/Users";
-import axios from "axios";
 import Search from "./components/user/Search";
+import axios from "axios";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import About from "./components/page/About";
 
 class App extends Component {
   state = {
@@ -51,20 +53,33 @@ class App extends Component {
   render() {
     const { loading, users } = this.state;
     return (
-      <div className="App">
-        {/* passing props in navbar */}
-        <Navbar title="Navbar" icon="fa fa-github" />
-        <div className="container">
-          <Alert alert={this.state.alert} />
-          <Search
-            searchUsers={this.searchUsers}
-            clearUsers={this.clearUsers}
-            showClear={this.state.users.length > 0 ? true : false}
-            setAlert={this.setAlert}
-          />
-          <Users loading={loading} users={users} />
+      <Router>
+        <div className="App">
+          {/* passing props in navbar */}
+          <Navbar title="Navbar" icon="fa fa-github" />
+          <div className="container">
+            <Alert alert={this.state.alert} />
+            <Switch>
+              <Route
+                exact
+                path="/"
+                render={(props) => (
+                  <React.Fragment>
+                    <Search
+                      searchUsers={this.searchUsers}
+                      clearUsers={this.clearUsers}
+                      showClear={this.state.users.length > 0 ? true : false}
+                      setAlert={this.setAlert}
+                    />
+                    <Users loading={loading} users={users} />
+                  </React.Fragment>
+                )}
+              />
+              <Route exact path="/about" component={About} />
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 }
