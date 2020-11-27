@@ -7,10 +7,12 @@ import Search from "./components/user/Search";
 import axios from "axios";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import About from "./components/page/About";
+import User from "./components/user/User";
 
 class App extends Component {
   state = {
     users: [],
+    user: {},
     loading: false,
     alert: null,
   };
@@ -50,8 +52,19 @@ class App extends Component {
     }, 5000);
   };
 
+  // get user
+  getUser = async (username) => {
+    this.setState({ loading: true });
+
+    // using async await
+    const res = await axios.get(
+      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_CLIENT}`
+    );
+    this.setState({ user: res.data, loading: false });
+  };
+
   render() {
-    const { loading, users } = this.state;
+    const { loading, users, user } = this.state;
     return (
       <Router>
         <div className="App">
@@ -76,6 +89,18 @@ class App extends Component {
                 )}
               />
               <Route exact path="/about" component={About} />
+              <Route
+                exact
+                path="/user/:login"
+                render={(props) => (
+                  <User
+                    {...props}
+                    getUser={this.getUser}
+                    user={user}
+                    loading={loading}
+                  />
+                )}
+              />
             </Switch>
           </div>
         </div>
