@@ -107,3 +107,16 @@ input[type="text"] {
 .my-1 {
   margin: 1rem 0;
 }
+
+.alert {
+  padding: 0.7rem;
+  margin: 1rem 0;
+  opacity: 0.9;
+  background: var(--light-color);
+  color: #333;
+}
+
+.alert-light {
+  background: var(--light-color);
+  color: #333;
+}
