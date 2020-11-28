@@ -12,21 +12,11 @@ import User from "./components/user/User";
 class App extends Component {
   state = {
     users: [],
+    repos: [],
     user: {},
     loading: false,
     alert: null,
   };
-
-  // async componentDidMount() {
-  //   // console.log(process.env.REACT_APP_GITHUB_CLIENT_CLIENT);
-  //   this.setState({ loading: true });
-
-  //   // using async await
-  //   const res = await axios.get(
-  //     `https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_CLIENT}`
-  //   );
-  //   this.setState({ users: res.data, loading: false });
-  // }
 
   // Search users
   searchUsers = async (text) => {
@@ -63,8 +53,19 @@ class App extends Component {
     this.setState({ user: res.data, loading: false });
   };
 
+  // get user Repos
+  getUserRepos = async (username) => {
+    this.setState({ loading: true });
+
+    // using async await
+    const res = await axios.get(
+      `https://api.github.com/users/${username}/repos?per_page=5&sort=created:asc&client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_CLIENT}`
+    );
+    this.setState({ repos: res.data, loading: false });
+  };
+
   render() {
-    const { loading, users, user } = this.state;
+    const { loading, users, user, repos } = this.state;
     return (
       <Router>
         <div className="App">
@@ -96,7 +97,9 @@ class App extends Component {
                   <User
                     {...props}
                     getUser={this.getUser}
+                    getUserRepos={this.getUserRepos}
                     user={user}
+                    repos={repos}
                     loading={loading}
                   />
                 )}

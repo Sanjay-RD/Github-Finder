@@ -10,11 +10,11 @@ const Navbar = ({ icon, title }) => {
       </h1>
       <ul>
         <li>
-          <i class="fa fa-home" aria-hidden="true"></i>
+          <i className="fa fa-home" aria-hidden="true"></i>
           <Link to="/">Home</Link>
         </li>
         <li>
-          <i class="fa fa-address-book-o" aria-hidden="true"></i>
+          <i className="fa fa-address-book-o" aria-hidden="true"></i>
           <Link to="/about">About</Link>
         </li>
       </ul>
