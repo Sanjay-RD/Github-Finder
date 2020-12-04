@@ -18,12 +18,6 @@ const App = () => {
   const [loading, setLoading] = useState(false);
   const [alert, setAlert] = useState(null);
 
-  // Clear state
-  const clearUsers = () => {
-    setUsers([]);
-    setLoading(false);
-  };
-
   // set alert
   const setAlerts = (msg, type) => {
     setAlert({ msg, type });
@@ -33,16 +27,6 @@ const App = () => {
   };
 
   // get user
-  const getUser = async (username) => {
-    setLoading(true);
-
-    // using async await
-    const res = await axios.get(
-      `https://api.github.com/users/${username}?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_CLIENT}`
-    );
-    setUser(res.data);
-    setLoading(false);
-  };
 
   // get user Repos
   const getUserRepos = async (username) => {
@@ -70,12 +54,8 @@ const App = () => {
                 path="/"
                 render={(props) => (
                   <React.Fragment>
-                    <Search
-                      clearUsers={clearUsers}
-                      showClear={users.length > 0 ? true : false}
-                      setAlert={setAlerts}
-                    />
-                    <Users loading={loading} users={users} />
+                    <Search setAlert={setAlerts} />
+                    <Users />
                   </React.Fragment>
                 )}
               />
@@ -84,14 +64,7 @@ const App = () => {
                 exact
                 path="/user/:login"
                 render={(props) => (
-                  <User
-                    {...props}
-                    getUser={getUser}
-                    getUserRepos={getUserRepos}
-                    user={user}
-                    repos={repos}
-                    loading={loading}
-                  />
+                  <User {...props} getUserRepos={getUserRepos} repos={repos} />
                 )}
               />
             </Switch>
