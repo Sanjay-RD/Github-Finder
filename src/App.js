@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import "./App.css";
 import Navbar from "./components/layout/Navbar";
 import Alert from "./components/layout/Alert";
@@ -10,6 +10,7 @@ import User from "./components/user/User";
 
 import GithubState from "./context/github/GithubState";
 import AlertState from "./context/alert/AlertState";
+import NotFound from "./components/page/NotFound";
 
 const App = () => {
   return (
@@ -33,11 +34,8 @@ const App = () => {
                   )}
                 />
                 <Route exact path="/about" component={About} />
-                <Route
-                  exact
-                  path="/user/:login"
-                  render={(props) => <User {...props} />}
-                />
+                <Route exact path="/user/:login" component={User} />
+                <Route component={NotFound} />
               </Switch>
             </div>
           </div>
